@@ -1,14 +1,52 @@
+import { useState } from "react";
+import Button from "../../components/shared/Button";
 import FormInput from "../../components/shared/FormInput";
 import "./SignUp.css";
 const SignUp = () => {
+  // 1 . Crear el estado
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // 3. Crear el console log
+    console.log(username);
+    console.log(email);
+    console.log(password);
+    console.log(name);
+  };
   return (
     <div className="container">
-      <form className="form">
+      <form onSubmit={handleSubmit} className="form">
         <h1>Sign Up Here</h1>
-        <FormInput label="username" type="text" />
-        <FormInput label="email" type="email" />
-        <FormInput label="password" type="password" />
-        <FormInput label="name" type="text" />
+        <FormInput
+          label="username"
+          // 1.2 meter el valor para que le pase su variable
+          value={username}
+          type="text"
+          // 2. crear evento Onchange
+          onChange={(event) => setUsername(event.target.value)}
+        />
+        <FormInput
+          label="email"
+          value={email}
+          type="email"
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <FormInput
+          label="password"
+          value={password}
+          type="password"
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        <FormInput
+          label="name"
+          value={name}
+          type="text"
+          onChange={(event) => setName(event.target.value)}
+        />
+        <Button type="submit">Submit</Button>
       </form>
     </div>
   );

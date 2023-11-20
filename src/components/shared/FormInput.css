@@ -1,0 +1,14 @@
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  text-transform: capitalize;
+}
+
+.form-input {
+  padding: 0.25rem;
+  border-radius: 10px;
+}
