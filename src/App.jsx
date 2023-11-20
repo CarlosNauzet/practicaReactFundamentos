@@ -1,7 +1,8 @@
 import "./App.css";
+import SignUp from "./pages/auth/SignUp";
 
 function App() {
-  return <h1>Hello there!</h1>;
+  return <SignUp />;
 }
 
 export default App;

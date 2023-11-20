@@ -1,0 +1,33 @@
+.container {
+  display: grid;
+  place-items: center;
+}
+
+.form {
+  padding: 2rem;
+  border: 1px solid black;
+  border-radius: 15px;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form h1 {
+  text-align: center;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  text-transform: capitalize;
+}
+
+.form-input {
+  padding: 0.25rem;
+  border-radius: 10px;
+}
