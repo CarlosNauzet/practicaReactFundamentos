@@ -1,20 +1,22 @@
 import { useState } from "react";
 import Button from "../../components/shared/Button";
 import FormInput from "../../components/shared/FormInput";
-import "./SignUp.css";
+import "./form.css";
+import { signUp } from "./service";
 const SignUp = () => {
-  // 1 . Crear el estado
+  // 1 . Crear el estado para guardar los valores de los inputs
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // 3. Crear el console log
-    console.log(username);
-    console.log(email);
-    console.log(password);
-    console.log(name);
+    // console.log(username);
+    // console.log(email);
+    // console.log(password);
+    // console.log(name);
+    await signUp(name, username, email, password);
   };
   return (
     <div className="container">
