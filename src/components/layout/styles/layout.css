@@ -1,0 +1,14 @@
+.layout {
+  display: grid;
+  grid-template-rows: 300px 1fr 200px;
+}
+
+.header {
+  border: 1px solid black;
+  padding: 3rem;
+}
+
+.footer {
+  border: 1px solid black;
+  padding: 3rem;
+}

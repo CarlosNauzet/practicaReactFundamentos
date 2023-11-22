@@ -3,12 +3,14 @@ import "./App.css";
 import FormInput from "./components/shared/FormInput";
 import LogIn from "./pages/auth/LogIn";
 import SignUp from "./pages/auth/SignUp";
+import Layout from "./components/layout/Layout";
 
 function App() {
   return (
     <Routes>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<LogIn />} />
+      <Route path="/" element={<Layout />} />
     </Routes>
   );
 }
