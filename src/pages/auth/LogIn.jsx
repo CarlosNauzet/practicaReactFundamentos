@@ -3,6 +3,7 @@ import Button from "../../components/shared/Button";
 import FormInput from "../../components/shared/FormInput";
 import "./form.css";
 import { logIn } from "./service";
+import CustomLink from "../../components/shared/CustomLink";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -30,6 +31,7 @@ const LogIn = () => {
           onChange={(event) => setPassword(event.target.value)}
         />
         <Button type="submit">Log me in</Button>
+        <CustomLink to="/signup">Not a member yet? Sign Up here!</CustomLink>
       </form>
     </div>
   );

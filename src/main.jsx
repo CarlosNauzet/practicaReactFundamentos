@@ -4,11 +4,13 @@ import App from "./App.jsx";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { BrowserRouter } from "react-router-DOM";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
     <ToastContainer position="top-center" className={"toast-message"} />
   </>
 );

@@ -3,6 +3,7 @@ import Button from "../../components/shared/Button";
 import FormInput from "../../components/shared/FormInput";
 import "./form.css";
 import { signUp } from "./service";
+import CustomLink from "../../components/shared/CustomLink";
 const SignUp = () => {
   // 1 . Crear el estado para guardar los valores de los inputs
   const [username, setUsername] = useState("");
@@ -49,6 +50,7 @@ const SignUp = () => {
           onChange={(event) => setName(event.target.value)}
         />
         <Button type="submit">Submit</Button>
+        <CustomLink to="/login">Already a member? Log in here</CustomLink>
       </form>
     </div>
   );

@@ -1,3 +1,4 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import FormInput from "./components/shared/FormInput";
 import LogIn from "./pages/auth/LogIn";
@@ -5,17 +6,14 @@ import SignUp from "./pages/auth/SignUp";
 
 function App() {
   return (
-    <>
-      <SignUp />
-      <LogIn />
-    </>
+    <Routes>
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<LogIn />} />
+    </Routes>
   );
 }
 
 export default App;
-
-
-
 
 // crear componente log in
 // usar componenters form-input & button dentro de log in
