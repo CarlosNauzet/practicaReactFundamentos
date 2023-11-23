@@ -1,13 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormInput from "../../components/shared/FormInput";
 import "../auth/styles/form.css";
 import "./styles/newadvert.css";
 import FormSelect from "../../components/shared/FormSelect";
+import { getTags } from "./service";
+import { getUser } from "../auth/service";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const NewAdvertPage = () => {
   const [productname, setProductName] = useState("");
   const [price, setPrice] = useState(0);
   const [trade, setTrade] = useState("sale");
+  const [tags, setTags] = useState([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchFunction = async () => {
+      try {
+        const user = await getUser();
+        console.log(user);
+        const fetchedTags = await getTags();
+        console.log(fetchedTags);
+        setTags(fetchedTags);
+        console.log(tags);
+      } catch (error) {
+        console.log(error);
+        toast.error("Unauthorized, please first proceed to log in");
+        navigate("/login");
+      }
+    };
+    fetchFunction();
+  }, []);
+
   return (
     <div className="new-advert">
       <form className="form">
