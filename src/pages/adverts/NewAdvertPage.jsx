@@ -20,11 +20,8 @@ const NewAdvertPage = () => {
     const fetchFunction = async () => {
       try {
         const user = await getUser();
-        console.log(user);
         const fetchedTags = await getTags();
-        console.log(fetchedTags);
         setTags(fetchedTags);
-        console.log(tags);
       } catch (error) {
         console.log(error);
         toast.error("Unauthorized, please first proceed to log in");
@@ -54,8 +51,11 @@ const NewAdvertPage = () => {
         <FormSelect
           label="trade"
           value={trade}
+          options={["onSale", "onSearch"]}
           onChange={(event) => setTrade(event.target.value)}
         />
+
+        <FormSelect label="tags" options={tags} />
         <input type="file" name="photo" id="photo" />
       </form>
     </div>
