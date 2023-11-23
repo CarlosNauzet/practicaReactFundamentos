@@ -1,15 +1,10 @@
 import { toast } from "react-toastify";
-import { client } from "../../api/client";
+import { client, setAutorizationHeader } from "../../api/client";
 export const signUp = async (name, username, email, password) => {
   await client.post("/api/auth/signup", { email, password, username, name });
 };
 
 export const logIn = async (email, password) => {
-  try {
-    await client.post("/api/auth/login", { email, password });
-    toast.success("You have successfully logged in");
-  } catch (error) {
-    console.log(error);
-    toast.error("There was an error at the log in process. Please try again");
-  }
+  const token = await client.post("/api/auth/login", { email, password });
+  setAutorizationHeader(token);
 };

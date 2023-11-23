@@ -4,15 +4,24 @@ import FormInput from "../../components/shared/FormInput";
 import "./form.css";
 import { logIn } from "./service";
 import CustomLink from "../../components/shared/CustomLink";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    await logIn(email, password);
+    try {
+      await logIn(email, password);
+      toast.success("User logged in!");
+      navigate("/");
+    } catch (error) {
+      toast.error("There was an issue while loggin in. PLease try again");
+      console.log(error);
+    }
   };
   return (
     <div className="container">
