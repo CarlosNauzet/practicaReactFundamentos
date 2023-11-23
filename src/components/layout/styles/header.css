@@ -1,0 +1,15 @@
+.header-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.header-items a {
+  text-decoration: none;
+}
+
+a.active {
+  text-decoration: underline;
+  color: darkblue;
+}
