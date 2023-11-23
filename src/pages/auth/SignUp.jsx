@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../../components/shared/Button";
 import FormInput from "../../components/shared/FormInput";
-import "./form.css";
+import "./styles/form.css";
 import { signUp } from "./service";
 import CustomLink from "../../components/shared/CustomLink";
 import { toast } from "react-toastify";

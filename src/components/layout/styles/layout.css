@@ -1,6 +1,7 @@
 .layout {
   display: grid;
   grid-template-rows: 100px 1fr 200px;
+  row-gap: 2rem;
 }
 
 .header {
