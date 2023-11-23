@@ -4,20 +4,24 @@ import FormInput from "../../components/shared/FormInput";
 import "./form.css";
 import { signUp } from "./service";
 import CustomLink from "../../components/shared/CustomLink";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
-  // 1 . Crear el estado para guardar los valores de los inputs
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // 3. Crear el console log
-    // console.log(username);
-    // console.log(email);
-    // console.log(password);
-    // console.log(name);
-    await signUp(name, username, email, password);
+    try {
+      await signUp(name, username, email, password);
+      toast.success("User created!");
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+      toast.error("There was an error, please try again later");
+    }
   };
   return (
     <div className="container">

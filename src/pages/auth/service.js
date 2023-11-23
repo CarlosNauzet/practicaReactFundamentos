@@ -1,13 +1,7 @@
 import { toast } from "react-toastify";
 import { client } from "../../api/client";
 export const signUp = async (name, username, email, password) => {
-  try {
-    await client.post("/api/auth/signup", { email, password, username, name });
-    toast.success("User created with success");
-  } catch (error) {
-    console.log(error);
-    toast.error("There was an error, please try again later");
-  }
+  await client.post("/api/auth/signup", { email, password, username, name });
 };
 
 export const logIn = async (email, password) => {
