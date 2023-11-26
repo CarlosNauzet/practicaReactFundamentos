@@ -12,3 +12,7 @@
   padding: 0.25rem;
   border-radius: 10px;
 }
+
+input:disabled {
+  background-color: lightgray;
+}

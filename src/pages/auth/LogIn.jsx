@@ -9,18 +9,22 @@ import { toast } from "react-toastify";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      setIsSubmitting(true);
       await logIn(email, password);
       toast.success("User logged in!");
       navigate("/");
     } catch (error) {
-      toast.error("There was an issue while loggin in. PLease try again");
+      toast.error("There was an issue while loggin in. Please try again");
       console.log(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
@@ -32,14 +36,18 @@ const LogIn = () => {
           value={email}
           type="text"
           onChange={(event) => setEmail(event.target.value)}
+          isSubmitting={isSubmitting}
         />
         <FormInput
           label="password"
           value={password}
           type="password"
           onChange={(event) => setPassword(event.target.value)}
+          isSubmitting={isSubmitting}
         />
-        <Button type="submit">Log me in</Button>
+        <Button type="submit">
+          {isSubmitting ? "Loggin in..." : "Log In"}
+        </Button>
         <CustomLink to="/signup">Not a member yet? Sign Up here!</CustomLink>
       </form>
     </div>
