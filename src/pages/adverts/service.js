@@ -12,3 +12,8 @@ export const createAdvert = async (formData) => {
   const advert = await client.post("/api/v1/adverts", formData);
   return advert;
 };
+
+export const getAdverts = async () => {
+  const adverts = await client.get("/api/v1/adverts");
+  return adverts;
+};
