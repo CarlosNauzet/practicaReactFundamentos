@@ -4,7 +4,7 @@ export const FormSelect = ({ label, value, onChange, options }) => {
       <label htmlFor={label} className="form-label">
         {label}
       </label>
-      <select name="trade" id="trade" onChange={onChange} defaultValue={value}>
+      <select name={label} id="trade" onChange={onChange} defaultValue={value}>
         {options.map((option) => (
           <option value={option}>{option}</option>
         ))}

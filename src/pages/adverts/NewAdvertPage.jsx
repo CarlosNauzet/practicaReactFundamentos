@@ -3,10 +3,11 @@ import FormInput from "../../components/shared/FormInput";
 import "../auth/styles/form.css";
 import "./styles/newadvert.css";
 import FormSelect from "../../components/shared/FormSelect";
-import { getTags } from "./service";
+import { createAdvert, getTags } from "./service";
 import { getUser } from "../auth/service";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Button from "../../components/shared/Button";
 
 const NewAdvertPage = () => {
   const [productname, setProductName] = useState("");
@@ -31,12 +32,26 @@ const NewAdvertPage = () => {
     fetchFunction();
   }, []);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    try {
+      const advert = await createAdvert(formData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="new-advert">
-      <form className="form">
+      <form
+        className="form"
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}
+      >
         <h1>Create a new add</h1>
         <FormInput
-          label="productname"
+          label="name"
           value={productname}
           type="text"
           onChange={(event) => setProductName(event.target.value)}
@@ -49,7 +64,7 @@ const NewAdvertPage = () => {
         />
 
         <FormSelect
-          label="trade"
+          label="sale"
           value={trade}
           options={["onSale", "onSearch"]}
           onChange={(event) => setTrade(event.target.value)}
@@ -57,6 +72,8 @@ const NewAdvertPage = () => {
 
         <FormSelect label="tags" options={tags} />
         <input type="file" name="photo" id="photo" />
+
+        <Button type="submit">Submit new add</Button>
       </form>
     </div>
   );
