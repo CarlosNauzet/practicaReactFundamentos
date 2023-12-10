@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [rememberMe, setRememberMe] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ const LogIn = () => {
     event.preventDefault();
     try {
       setIsSubmitting(true);
-      await logIn(email, password);
+      await logIn(email, password, rememberMe);
       toast.success("User logged in!");
       navigate("/");
     } catch (error) {
@@ -45,6 +46,18 @@ const LogIn = () => {
           onChange={(event) => setPassword(event.target.value)}
           isSubmitting={isSubmitting}
         />
+
+        <div className="check-form-row">
+          <input
+            type="checkbox"
+            name="remember-me"
+            onChange={(e) => {
+              setRememberMe(e.target.value);
+            }}
+          />
+          Remember me
+        </div>
+
         <Button type="submit">
           {isSubmitting ? "Loggin in..." : "Log In"}
         </Button>

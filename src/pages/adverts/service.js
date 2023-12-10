@@ -17,3 +17,14 @@ export const getAdverts = async () => {
   const adverts = await client.get("/api/v1/adverts");
   return adverts;
 };
+
+export const getAdvert = async (id) => {
+  const advert = await client.get(`/api/v1/adverts/${id}`);
+  return advert;
+};
+
+export const deleteAdvert = async (id) => {
+  console.log({ id });
+  const advert = await client.delete(`/api/v1/adverts/${id}`);
+  return advert;
+};

@@ -82,6 +82,4 @@ const NewAdvertPage = () => {
   );
 };
 
-// nombre, compra o venta (select), tags disponibles, precio, foto(input type="file");
-
 export default NewAdvertPage;

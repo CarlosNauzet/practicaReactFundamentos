@@ -18,3 +18,14 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.advert-detail {
+  background-color: rgb(166, 221, 218);
+  justify-content: center;
+}
+.advert-detail p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
