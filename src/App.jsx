@@ -6,13 +6,21 @@ import Layout from "./components/layout/Layout";
 import AdvertsPage from "./pages/adverts/AdvertsPage";
 import NewAdvertPage from "./pages/adverts/NewAdvertPage";
 import AdvertDetailPage from "./pages/adverts/AdvertDetailPage";
+import ProtectedRoute from "./pages/auth/components/ProtectedRoute";
 
 function App() {
   return (
     <Routes>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<LogIn />} />
-      <Route path="/adverts" element={<Layout />}>
+      <Route
+        path="/adverts"
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<AdvertsPage />} />
         <Route path="new" element={<NewAdvertPage />} />
         <Route path=":id" element={<AdvertDetailPage />} />

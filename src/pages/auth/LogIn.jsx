@@ -6,6 +6,8 @@ import { logIn } from "./service";
 import CustomLink from "../../components/shared/CustomLink";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { authLoginSuccess } from "../../store/actions";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -13,9 +15,11 @@ const LogIn = () => {
   const [rememberMe, setRememberMe] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    dispatch(authLoginSuccess());
     try {
       setIsSubmitting(true);
       await logIn(email, password, rememberMe);

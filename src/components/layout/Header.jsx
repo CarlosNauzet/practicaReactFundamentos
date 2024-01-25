@@ -4,10 +4,14 @@ import Button from "../shared/Button";
 import "./styles/header.css";
 import { removeAuthorizationHeader } from "../../api/client";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { authLogout } from "../../store/actions";
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleLogOut = () => {
+    dispatch(authLogout());
     removeAuthorizationHeader();
     navigate("/login");
     toast.success("You have logged out!");
