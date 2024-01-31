@@ -13,7 +13,6 @@ const LogIn = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const isFetching = useSelector(getIsLoading);
-  console.log({ isFetching });
 
   const handleSubmit = async (event) => {
     event.preventDefault();

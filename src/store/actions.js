@@ -33,4 +33,30 @@ export const authLogin =
     }
   };
 
-export const advertsLoadedSuccess = () => {};
+export const advertsLoadedRequest = () => {
+  return { type: types.ADVERTS_LOADED_REQUEST };
+};
+
+export const advertsLoadedSuccess = (advertsData) => {
+  return { type: types.ADVERTS_LOADED_SUCCESS, payload: advertsData };
+};
+
+export const advertsLoadedFailure = (error) => {
+  return { type: types.ADVERTS_LOADED_FAILURE, error: true, payload: error };
+};
+
+export function loadAdverts() {
+  return async function (dispatch, getState, { api: { advertsAPI } }) {
+    try {
+      dispatch(advertsLoadedRequest());
+      const advertsData = await advertsAPI.getAdverts();
+      dispatch(advertsLoadedSuccess(advertsData));
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        "There was an issue while fetching the adverts. Please try again"
+      );
+      dispatch(advertsLoadedFailure(error));
+    }
+  };
+}

@@ -6,7 +6,23 @@ const initialState = {
     isFetching: false,
     error: null,
   },
+  adverts: {
+    advertsData: [],
+    areLoaded: false,
+  },
 };
+
+export function adverts(state = initialState.adverts, action) {
+  switch (action.type) {
+    case types.ADVERTS_LOADED_SUCCESS:
+      return {
+        advertsData: action.payload,
+        areLoaded: true,
+      };
+    default:
+      return state;
+  }
+}
 
 export function auth(state = initialState.auth, action) {
   switch (action.type) {

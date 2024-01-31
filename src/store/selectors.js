@@ -5,3 +5,7 @@ export const getAuth = (state) => {
 export const getIsLoading = (state) => {
   return state.ui.isFetching;
 };
+
+export const getAdverts = (state) => {
+  return state.adverts.advertsData;
+};
