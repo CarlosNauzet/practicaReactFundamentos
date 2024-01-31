@@ -8,6 +8,8 @@ import { getUser } from "../auth/service";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "../../components/shared/Button";
+import { useDispatch } from "react-redux";
+import { createAdverts } from "../../store/actions";
 
 const NewAdvertPage = () => {
   const [productname, setProductName] = useState("");
@@ -16,6 +18,8 @@ const NewAdvertPage = () => {
   const [tags, setTags] = useState([]);
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchFunction = async () => {
@@ -35,6 +39,7 @@ const NewAdvertPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    dispatch(createAdverts(formData));
     try {
       const advert = await createAdvert(formData);
       toast.success("Advert created!");

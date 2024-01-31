@@ -60,3 +60,29 @@ export function loadAdverts() {
     }
   };
 }
+
+export const advertsCreatedRequest = () => {
+  return { type: types.ADVERTS_CREATED_REQUEST };
+};
+
+export const advertsCreatedSuccess = (newAdvert) => {
+  return { type: types.ADVERTS_CREATED_SUCCESS, payload: newAdvert };
+};
+
+export const advertsCreatedFailure = (error) => {
+  return { type: types.ADVERTS_CREATED_FAILURE, error: true, payload: error };
+};
+
+export function createAdverts(adFormData) {
+  return async function (dispatch, getState, { api: { advertsAPI }, router }) {
+    try {
+      dispatch(advertsCreatedRequest());
+      const advert = await advertsAPI.createAdvert(adFormData);
+      console.log(advert);
+    } catch (error) {
+      console.log(error);
+      toast.error("There was an error while creating your new ad");
+      dispatch(advertsCreatedFailure(error));
+    }
+  };
+}
