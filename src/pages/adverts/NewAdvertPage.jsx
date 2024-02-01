@@ -40,14 +40,14 @@ const NewAdvertPage = () => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     dispatch(createAdverts(formData));
-    try {
-      const advert = await createAdvert(formData);
-      toast.success("Advert created!");
-      navigate("/adverts");
-    } catch (error) {
-      console.log(error);
-      toast.error("Advert not created. Please try again later");
-    }
+    // try {
+    //   const advert = await createAdvert(formData);
+    //   toast.success("Advert created!");
+    //   navigate("/adverts");
+    // } catch (error) {
+    //   console.log(error);
+    //   toast.error("Advert not created. Please try again later");
+    // }
   };
 
   return (

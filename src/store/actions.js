@@ -78,7 +78,9 @@ export function createAdverts(adFormData) {
     try {
       dispatch(advertsCreatedRequest());
       const advert = await advertsAPI.createAdvert(adFormData);
-      console.log(advert);
+      dispatch(advertsCreatedSuccess(advert));
+      toast.success("Advert created succesfully!");
+      router.navigate(`/adverts/${advert.id}`);
     } catch (error) {
       console.log(error);
       toast.error("There was an error while creating your new ad");
