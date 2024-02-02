@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getAdverts } from "../../store/selectors";
+import { getAdverts, getIsLoaded } from "../../store/selectors";
 import { Link, useSearchParams } from "react-router-dom";
 import { Dna } from "react-loader-spinner";
 import { setAutorizationHeader } from "../../api/client";
@@ -15,7 +15,7 @@ const AdvertsPage = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(getAdverts);
   const isFetching = useSelector(getIsLoading);
-  console.log({ adverts });
+  const areLoaded = useSelector(getIsLoaded);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -25,6 +25,7 @@ const AdvertsPage = () => {
   }, []);
 
   useEffect(() => {
+    if (areLoaded) return;
     dispatch(loadAdverts());
   }, []);
 

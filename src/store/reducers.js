@@ -24,6 +24,11 @@ export function adverts(state = initialState.adverts, action) {
         areLoaded: false,
         advertsData: [action.payload, ...state.advertsData],
       };
+    case types.ADVERTS_DETAIL_SUCCESS:
+      return {
+        areLoaded: false,
+        advertsData: [action.payload],
+      };
     default:
       return state;
   }

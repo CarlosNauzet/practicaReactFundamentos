@@ -88,3 +88,32 @@ export function createAdverts(adFormData) {
     }
   };
 }
+
+export const advertsDetailRequest = () => {
+  return { type: types.ADVERTS_DETAIL_REQUEST };
+};
+
+export const advertsDetailSuccess = (advertDetail) => {
+  return { type: types.ADVERTS_DETAIL_SUCCESS, payload: advertDetail };
+};
+
+export const advertsDetailFailure = (error) => {
+  return { type: types.ADVERTS_DETAIL_FAILURE, error: true, payload: error };
+};
+
+export function advertDetail(id) {
+  return async function (dispatch, getState, { api: { advertsAPI } }) {
+    const adverts = getState().adverts.advertsData;
+    const advertFound = adverts.find((advert) => (advert.id = id));
+    if (advertFound) return;
+    try {
+      dispatch(advertsDetailRequest());
+      const advert = await advertsAPI.getAdvert(id);
+      dispatch(advertsDetailSuccess(advert));
+    } catch (error) {
+      console.log(error);
+      toast.error("Loading your add did not come through :-(");
+      dispatch(advertsDetailFailure(error));
+    }
+  };
+}

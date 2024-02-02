@@ -11,4 +11,8 @@ export const types = {
   ADVERTS_CREATED_REQUEST: "adverts/created/request",
   ADVERTS_CREATED_SUCCESS: "adverts/created/success",
   ADVERTS_CREATED_FAILURE: "adverts/created/failure",
+
+  ADVERTS_DETAIL_REQUEST: "adverts/detail/request",
+  ADVERTS_DETAIL_SUCCESS: "adverts/detail/success",
+  ADVERTS_DETAIL_FAILURE: "adverts/detail/failure",
 };
