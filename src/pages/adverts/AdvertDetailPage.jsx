@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { Dna } from "react-loader-spinner";
 import Button from "../../components/shared/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { advertDetail } from "../../store/actions";
+import { advertDelete, advertDetail } from "../../store/actions";
 import { getAdvert } from "../../store/selectors";
 
 const AdvertDetailPage = () => {
@@ -17,7 +17,7 @@ const AdvertDetailPage = () => {
   const advert = useSelector(getAdvert(id));
 
   useEffect(() => {
-    console.log("useEffect");
+    console.log({ id });
     dispatch(advertDetail(id));
   }, [dispatch, id]);
 
@@ -39,6 +39,8 @@ const AdvertDetailPage = () => {
   // }, []);
 
   const handleDeleteAdvert = async (id) => {
+    console.log("delete");
+    // dispatch(advertDelete(id));
     try {
       const advert = await deleteAdvert(id);
       toast.success("Advert deleted succesfully!");

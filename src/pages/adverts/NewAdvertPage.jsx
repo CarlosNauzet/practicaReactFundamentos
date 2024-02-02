@@ -3,38 +3,40 @@ import FormInput from "../../components/shared/FormInput";
 import "../auth/styles/form.css";
 import "./styles/newadvert.css";
 import FormSelect from "../../components/shared/FormSelect";
-import { createAdvert, getTags } from "./service";
-import { getUser } from "../auth/service";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import Button from "../../components/shared/Button";
-import { useDispatch } from "react-redux";
-import { createAdverts } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { createAdverts, loadAdverts } from "../../store/actions";
+import { getIsLoaded, getTags } from "../../store/selectors";
 
 const NewAdvertPage = () => {
   const [productname, setProductName] = useState("");
   const [price, setPrice] = useState(0);
   const [trade, setTrade] = useState("sale");
-  const [tags, setTags] = useState([]);
-
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
+  const areLoaded = useSelector(getIsLoaded);
+  const tags = useSelector(getTags);
+
   useEffect(() => {
-    const fetchFunction = async () => {
-      try {
-        const user = await getUser();
-        const fetchedTags = await getTags();
-        setTags(fetchedTags);
-      } catch (error) {
-        console.log(error);
-        toast.error("Unauthorized, please first proceed to log in");
-        navigate("/login");
-      }
-    };
-    fetchFunction();
+    if (areLoaded) return;
+    dispatch(loadAdverts());
   }, []);
+
+  // useEffect(() => {
+  //   const fetchFunction = async () => {
+  //     try {
+  //       const user = await getUser();
+  //       const fetchedTags = await getTags();
+  //       setTags(fetchedTags);
+  //     } catch (error) {
+  //       console.log(error);
+  //       toast.error("Unauthorized, please first proceed to log in");
+  //       navigate("/login");
+  //     }
+  //   };
+  //   fetchFunction();
+  // }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

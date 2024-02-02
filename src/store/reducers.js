@@ -38,6 +38,11 @@ export function adverts(state = initialState.adverts, action) {
         ...state,
         tags: action.payload,
       };
+    case types.ADVERTS_DELETE_SUCCESS:
+      return {
+        ...state,
+        areLoaded: false,
+      };
     default:
       return state;
   }

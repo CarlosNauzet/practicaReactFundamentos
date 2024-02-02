@@ -123,3 +123,34 @@ export function advertDetail(id) {
 export const tagsInfoSuccess = (tagsInfo) => {
   return { type: types.TAGS_INFO_SUCCESS, payload: tagsInfo };
 };
+
+export const advertsDeleteRequest = () => {
+  return { type: types.ADVERTS_DELETE_REQUEST };
+};
+
+export const advertsDeleteSuccess = () => {
+  return { type: types.ADVERTS_DELETE_SUCCESS };
+};
+
+export const advertsDeleteFailure = (error) => {
+  return { type: types.ADVERTS_DELETE_FAILURE, error: true, payload: error };
+};
+
+export function advertDelete(id) {
+  return async function (dispatch, getState, { api: { advertsAPI }, router }) {
+    const adverts = getState().adverts.advertsData;
+    const advertFound = adverts.find((advert) => (advert.id = id));
+    if (advertFound) return;
+    try {
+      dispatch(advertsDeleteRequest());
+      await advertsAPI.deleteAdvert(id);
+      dispatch(advertsDeleteSuccess());
+      toast.success("Adverts deleted succesfully");
+      router.navigate("/adverts");
+    } catch (error) {
+      console.log(error);
+      toast.error("The deletion could not happen sorry :-(");
+      dispatch(advertsDeleteFailure(error));
+    }
+  };
+}
