@@ -50,6 +50,8 @@ export function loadAdverts() {
     try {
       dispatch(advertsLoadedRequest());
       const advertsData = await advertsAPI.getAdverts();
+      const tagsData = await advertsAPI.getTags();
+      dispatch(tagsInfoSuccess(tagsData));
       dispatch(advertsLoadedSuccess(advertsData));
     } catch (error) {
       console.log(error);
@@ -117,3 +119,7 @@ export function advertDetail(id) {
     }
   };
 }
+
+export const tagsInfoSuccess = (tagsInfo) => {
+  return { type: types.TAGS_INFO_SUCCESS, payload: tagsInfo };
+};

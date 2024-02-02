@@ -9,6 +9,7 @@ const initialState = {
   adverts: {
     advertsData: [],
     areLoaded: false,
+    tags: [],
   },
 };
 
@@ -16,18 +17,26 @@ export function adverts(state = initialState.adverts, action) {
   switch (action.type) {
     case types.ADVERTS_LOADED_SUCCESS:
       return {
+        ...state,
         advertsData: action.payload,
         areLoaded: true,
       };
     case types.ADVERTS_CREATED_SUCCESS:
       return {
+        ...state,
         areLoaded: false,
         advertsData: [action.payload, ...state.advertsData],
       };
     case types.ADVERTS_DETAIL_SUCCESS:
       return {
+        ...state,
         areLoaded: false,
         advertsData: [action.payload],
+      };
+    case types.TAGS_INFO_SUCCESS:
+      return {
+        ...state,
+        tags: action.payload,
       };
     default:
       return state;

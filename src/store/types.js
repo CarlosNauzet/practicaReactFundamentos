@@ -15,4 +15,8 @@ export const types = {
   ADVERTS_DETAIL_REQUEST: "adverts/detail/request",
   ADVERTS_DETAIL_SUCCESS: "adverts/detail/success",
   ADVERTS_DETAIL_FAILURE: "adverts/detail/failure",
+
+  TAGS_INFO_REQUEST: "tags/info/request",
+  TAGS_INFO_SUCCESS: "tags/info/success",
+  TAGS_INFO_FAILURE: "tags/info/failure",
 };
