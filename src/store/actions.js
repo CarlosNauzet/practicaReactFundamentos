@@ -106,7 +106,7 @@ export const advertsDetailFailure = (error) => {
 export function advertDetail(id) {
   return async function (dispatch, getState, { api: { advertsAPI } }) {
     const adverts = getState().adverts.advertsData;
-    const advertFound = adverts.find((advert) => (advert.id = id));
+    const advertFound = adverts.find((advert) => advert.id === id);
     if (advertFound) return;
     try {
       dispatch(advertsDetailRequest());
@@ -138,9 +138,6 @@ export const advertsDeleteFailure = (error) => {
 
 export function advertDelete(id) {
   return async function (dispatch, getState, { api: { advertsAPI }, router }) {
-    const adverts = getState().adverts.advertsData;
-    const advertFound = adverts.find((advert) => (advert.id = id));
-    if (advertFound) return;
     try {
       dispatch(advertsDeleteRequest());
       await advertsAPI.deleteAdvert(id);

@@ -40,15 +40,15 @@ const AdvertDetailPage = () => {
 
   const handleDeleteAdvert = async (id) => {
     console.log("delete");
-    // dispatch(advertDelete(id));
-    try {
-      const advert = await deleteAdvert(id);
-      toast.success("Advert deleted succesfully!");
-      navigate("/adverts");
-    } catch (error) {
-      console.log(error);
-      toast.error("There was an error trying to delete the ad");
-    }
+    dispatch(advertDelete(id));
+    // try {
+    //   const advert = await deleteAdvert(id);
+    //   toast.success("Advert deleted succesfully!");
+    //   navigate("/adverts");
+    // } catch (error) {
+    //   console.log(error);
+    //   toast.error("There was an error trying to delete the ad");
+    // }
   };
 
   if (isLoading)

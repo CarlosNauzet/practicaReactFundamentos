@@ -12,7 +12,7 @@ export const getAdverts = (state) => {
 
 export const getAdvert = (id) => (state) => {
   const adverts = state.adverts.advertsData;
-  const advertFound = adverts.find((advert) => (advert.id = id));
+  const advertFound = adverts.find((advert) => advert.id === id);
   console.log({ advertFound });
   return advertFound;
 };
