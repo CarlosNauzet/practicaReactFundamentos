@@ -13,3 +13,9 @@ npm install
 npm run dev
 
 ##
+
+### Nodepop Version 2
+
+-NO added fetures
+-Refactorization & application of Redux principles
+-Testing
